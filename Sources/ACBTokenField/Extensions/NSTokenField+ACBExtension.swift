@@ -179,13 +179,13 @@ extension NSTokenField {
             return associated(key: &Keys.clearButton) {
                 var button: NSButton!
                 if #available(OSX 10.12, *) {
-                    button = NSButton(image: NSImage(named: self.clearIconName)!,
+                    button = NSButton(image: NSImage(named: NSImage.Name(rawValue: self.clearIconName))!,
                                       target: self,
                                       action: #selector(self.clearButtonTapped(_:)))
                 } else {
                     // Fallback on earlier versions
                     button = NSButton()
-                    button.image = NSImage(named: self.clearIconName)!
+                    button.image = NSImage(named: NSImage.Name(rawValue: self.clearIconName))!
                     button.target = self
                     button.action = #selector(self.clearButtonTapped(_:))
                 }
@@ -256,11 +256,11 @@ extension NSTokenField {
     private func setupSearchIconView() {
         var searchImageView: NSImageView!
         if #available(OSX 10.12, *) {
-            searchImageView = NSImageView(image: NSImage(named: self.searchIconName)!)
+            searchImageView = NSImageView(image: NSImage(named: NSImage.Name(rawValue: self.searchIconName))!)
         } else {
             // Fallback on earlier versions
             searchImageView = NSImageView()
-            searchImageView.image = NSImage(named: self.searchIconName)!
+            searchImageView.image = NSImage(named: NSImage.Name(rawValue: self.searchIconName))!
         }
         self.leftView = searchImageView
     }
@@ -326,7 +326,7 @@ extension NSTokenField {
             let maxIndex = subString.length
             
             for i in 0..<maxIndex {
-                if subString.character(at: i) == unichar(NSTextAttachment.character) {
+                if subString.character(at: i) == unichar(NSTextAttachment.NSAttachmentCharacter) {
                     tokenIndex += 1
                 }
             }
@@ -422,11 +422,11 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
         return super.responds(to: aSelector)
     }
     
-    func controlTextDidBeginEditing(_ obj: Notification) {
+    override func controlTextDidBeginEditing(_ obj: Notification) {
         prevTokenCount = tokenCount()
     }
     
-    func controlTextDidChange(_ obj: Notification) {
+    override func controlTextDidChange(_ obj: Notification) {
         tokenField?.handleClearButton()
         
         DispatchQueue.main.async { [weak self] in
@@ -619,7 +619,7 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
         if let string = tokenField?.currentEditor()?.string as NSString? {
             let maxIndex = string.length
             for i in 0..<maxIndex {
-                if string.character(at: i) == unichar(NSTextAttachment.character) {
+                if string.character(at: i) == unichar(NSTextAttachment.NSAttachmentCharacter) {
                     newCount += 1
                 }
             }
