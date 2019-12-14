@@ -326,7 +326,7 @@ extension NSTokenField {
             let maxIndex = subString.length
             
             for i in 0..<maxIndex {
-                if subString.character(at: i) == unichar(NSTextAttachment.NSAttachmentCharacter) {
+                if subString.character(at: i) == unichar(NSAttachmentCharacter) {
                     tokenIndex += 1
                 }
             }
@@ -619,7 +619,7 @@ fileprivate class ACBTokenFieldController: NSObject, NSTokenFieldDelegate {
         if let string = tokenField?.currentEditor()?.string as NSString? {
             let maxIndex = string.length
             for i in 0..<maxIndex {
-                if string.character(at: i) == unichar(NSTextAttachment.NSAttachmentCharacter) {
+                if string.character(at: i) == unichar(NSAttachmentCharacter) {
                     newCount += 1
                 }
             }
