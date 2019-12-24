@@ -137,12 +137,12 @@ extension NSTokenField {
     }
     
     public var clearIconName: String {
-        get { return associated(key: &Keys.clearIconName) { "ClearDarkGray" }! }
+        get { return associated(key: &Keys.clearIconName) { "NSStopProgressFreestandingTemplate" }! }
         set { associate(key: &Keys.clearIconName, value: newValue) }
     }
     
     public var searchIconName: String {
-        get { return associated(key: &Keys.searchIconName) { "Glass" }! }
+        get { return associated(key: &Keys.searchIconName) { "NSTouchBarSearchTemplate" }! }
         set { associate(key: &Keys.searchIconName, value: newValue) }
     }
     
